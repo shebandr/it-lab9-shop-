@@ -1,6 +1,6 @@
 var N = document.getElementsByClassName("card").length
 console.log(N)
-
+var sum = 0
 var shop = []
 for (var i = 0; i < N; i++) {
     shop[i] = 0;
@@ -46,6 +46,7 @@ function opening_cart() {
     for (var i = 0; i < 12; i++) {
         if (shop[i] != 0) {
             c++
+            sum = sum + shop[i] * 300
             var element = document.createElement("div")
             element.className = "string_shop"
             element.innerText = i + " предмета " + shop[i] + " штук"
@@ -55,19 +56,21 @@ function opening_cart() {
     if (c != 0) {
         var buy_button = document.createElement("button")
         buy_button.id = "buy_button"
-        buy_button.innerHTML = "оплатить"
+        buy_button.innerHTML = "оплатить " + sum + "$"
         inner_strings.append(buy_button)
     } else {
         var error = document.createElement("div")
         error.id = "error"
-        error.innerHTML="корзина пуста, выберите что-либо в списке товаров"
+        error.innerHTML = "корзина пуста, выберите что-либо в списке товаров"
         inner_strings.append(error)
     }
+    sum = 0
 }
 
 function clear_cart() {
     for (var q = 0; q < N; q++) {
         shop[q] = 0
     }
+
 }
 
